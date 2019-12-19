@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {HashRouter as Router,Route,Redirect} from 'react-router-dom' 
+// import Index from './views/Index.js'
+// import Page404 from './views/error/404.js'
+import loadable from './utils/loadable.js'
+import 'antd/dist/antd.css'
+
+
+let Layout =loadable(()=>import('./views/Layout.js'))
+let Page404 = loadable(()=> import('./views/error/404.js'))
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+       <Route exact  path="/"   render={()=>(
+            <Redirect to="/index"/>
+       )} />
+       <Route component={Layout} />
+       <Route exact path="/404" component ={Page404}/>
+    </Router>
   );
 }
 
