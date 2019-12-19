@@ -1,8 +1,7 @@
 import React,{Component} from 'react'
 import {Icon,Layout}from 'antd'
 import  '../style/index.scss'
-import CustomMenu from '../components/customMenu/CustomMenu.js'
-import menu from '../utils/menu.js'
+import LayoutSider from './layout/Sider'
 const {Header,Content,Sider} = Layout
 
 
@@ -24,10 +23,7 @@ class Index extends Component {
     render() {
       return (
         <Layout style={{minHeight:'100vh'}}>
-          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-            <div className="logo" />
-            <CustomMenu {...this.props} onClick={this.onClick} value={menu}/>
-          </Sider>
+          <LayoutSider {...this.props} collapsed={this.state.collapsed} />
           <Layout>
             <Header style={{ background: '#fff', padding: 0 }}>
               <Icon
